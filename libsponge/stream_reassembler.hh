@@ -14,6 +14,13 @@ class StreamReassembler {
 
     ByteStream _output;  //!< The reassembled in-order byte stream
     size_t _capacity;    //!< The maximum number of bytes
+    std::deque<char> buffer;
+    std::deque<bool> arrived;
+    size_t _unassembled_bytes = 0;
+    size_t expect_index = 0;
+    size_t _eof = -1;
+    //! \brief tries to put bytes into the output stream.
+    void try_output();
 
   public:
     //! \brief Construct a `StreamReassembler` that will store up to `capacity` bytes.
