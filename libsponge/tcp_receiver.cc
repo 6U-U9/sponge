@@ -23,7 +23,9 @@ void TCPReceiver::segment_received(const TCPSegment &seg) {
     }
     bool eof = seg.header().fin;
     std::string payload = seg.payload().copy();
-    uint64_t index = unwrap(seg.header().seqno , _isn.value(), this->_reassembler.expect()) - seg.header().syn ? 0 : 1;
+    uint64_t index = unwrap(seg.header().seqno , _isn.value(), this->_reassembler.expect());
+    if(!seg.header().syn)
+        index --;
     this->_reassembler.push_substring(payload, index, eof);
 }
 
