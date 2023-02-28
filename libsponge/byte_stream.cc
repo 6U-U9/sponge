@@ -34,6 +34,8 @@ string ByteStream::peek_output(const size_t len) const {
     size_t index = 0;
     for(auto p=this->buffer.begin(); p!=this->buffer.end(); p++)
     {
+        if(index >= l)
+            break;
         str[index] = *p;
         index++;
     }
