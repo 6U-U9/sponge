@@ -8,7 +8,7 @@
             "name": "(gdb) 启动",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/tests/send_ack",
+            "program": "${workspaceFolder}/build/tests/fsm_retx_relaxed",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

@@ -20,6 +20,12 @@ class TCPConnection {
     //! for 10 * _cfg.rt_timeout milliseconds after both streams have ended,
     //! in case the remote TCPConnection doesn't know we've received its whole stream?
     bool _linger_after_streams_finish{true};
+    size_t _time{0};
+    size_t _last_ack_time{0};
+    bool _syn{false};
+    bool _closed{false};
+    void send();
+    void reset(const bool notice);
 
   public:
     //! \name "Input" interface for the writer

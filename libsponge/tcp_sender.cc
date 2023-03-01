@@ -102,6 +102,7 @@ void TCPSender::tick(const size_t ms_since_last_tick) {
         {
             _timeout *= 2;
             _consecutive_retransmissions ++;
+            //cerr<<_consecutive_retransmissions<<endl;
         }
         _timer = 0;
         TCPSegment seg = _not_ack_segments.front();
@@ -114,6 +115,6 @@ unsigned int TCPSender::consecutive_retransmissions() const { return _consecutiv
 void TCPSender::send_empty_segment() {
     TCPSegment seg;
     seg.header().seqno = wrap(_next_seqno, _isn);
-    _not_ack_segments.push(seg);
+    //_not_ack_segments.push(seg);
     _segments_out.push(seg);
 }
