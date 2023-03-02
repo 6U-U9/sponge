@@ -1,4 +1,4 @@
-#include "socket.hh"
+#include "tcp_sponge_socket.hh"
 #include "util.hh"
 
 #include <cstdlib>
@@ -9,7 +9,7 @@ using namespace std;
 void get_URL(const string &host, const string &path) {
     // Your code here.
     auto addr = Address(host, "http");
-    auto socket = TCPSocket();
+    auto socket = FullStackSocket();
     socket.connect(addr);
     const std::string space = " ";
     const std::string enter = "\r\n";
@@ -25,6 +25,7 @@ void get_URL(const string &host, const string &path) {
         cout<<line;
     }
     socket.close();
+    socket.wait_until_closed();
     // You will need to connect to the "http" service on
     // the computer whose name is in the "host" string,
     // then request the URL path given in the "path" string.
